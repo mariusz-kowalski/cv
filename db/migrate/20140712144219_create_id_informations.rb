@@ -3,7 +3,7 @@ class CreateIdInformations < ActiveRecord::Migration
     create_table :id_informations do |t|
       t.string :first_name, limit: 90
       t.string :last_name, limit: 90
-      t.blob :photo
+      t.binary :photo
 
       t.timestamps
     end

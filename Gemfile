@@ -38,3 +38,17 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'haml'
+gem 'bootstrap-sass'
+gem 'bootstrap_form'
+
+group :test do
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
+
+group :development, :test do
+  # gem 'pry'
+  gem 'pry-nav'
+end

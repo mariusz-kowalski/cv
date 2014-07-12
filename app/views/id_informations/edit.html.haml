@@ -1,0 +1,14 @@
+%h1 Edit id informations
+
+= bootstrap_form_for(@id_informations,
+    url: id_informations_update_path,
+    method: 'patch',
+    layout: :horizontal, 
+    label_col: 'col-sm-6', 
+    control_col: 'col-sm-6') do |f|
+  = f.alert_message "The form contains #{pluralize(@id_informations.errors.count, "error")}"
+  = f.error_summary
+  = f.text_field :first_name
+  = f.text_field :last_name
+  = f.form_group do
+    = f.submit 'Save'
