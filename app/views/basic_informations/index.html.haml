@@ -1,11 +1,17 @@
-%h1 Basic informations
+%h1= resource_name.humanize
 
-- if @basic_informations.empty?
-  %div There is no any basic informations
+- if @informations.empty?
+  %div There is no any informations
 - else
-  - @basic_informations.each do |basic_information|
-    = render layout: 'row_3cols', 
-        locals: {label: basic_information.name,
-            col2: link_to('show',basic_information_path(basic_information)),
-            col3: link_to('delete',basic_information_path(basic_information),method: :delete, data: {confirm: "Are you sure want to delete information?"})} do
-      = link_to basic_information.value, edit_basic_information_path(basic_information)
+  - @informations.each do |information|
+    - show_link = link_to 'show', resource_path(information)
+    - delete_link = link_to 'delete', 
+      resource_path(information), 
+      method: :delete, 
+      data: {confirm: "Are you sure want to delete information?"}
+    = render layout: 'row_4cols', 
+        locals: {label: information.name,
+            col2: show_link,
+            col3: delete_link,
+            col4: @special_action_link} do
+      = link_to information.value, edit_resource_path(information)

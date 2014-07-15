@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   patch 'id_informations/update'
 
   resources :basic_informations
+  resources :list_informations do
+    resources :list_items
+  end
 end

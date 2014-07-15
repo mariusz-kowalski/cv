@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712195135) do
+ActiveRecord::Schema.define(version: 20140715110547) do
 
   create_table "basic_informations", force: true do |t|
     t.string   "name",             limit: 60
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140712195135) do
     t.string   "description",      limit: 256
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type",             limit: 60
   end
 
   create_table "id_informations", force: true do |t|
@@ -29,5 +30,13 @@ ActiveRecord::Schema.define(version: 20140712195135) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "lists", id: false, force: true do |t|
+    t.integer "list_item_id"
+    t.integer "list_information_id"
+  end
+
+  add_index "lists", ["list_information_id"], name: "index_lists_on_list_information_id"
+  add_index "lists", ["list_item_id"], name: "index_lists_on_list_item_id", unique: true
 
 end

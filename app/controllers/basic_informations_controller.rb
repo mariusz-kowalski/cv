@@ -1,20 +1,25 @@
 class BasicInformationsController < ApplicationController
-  before_action :set_basic_information, only: [:show, :edit, :update, :destroy]
+  before_action :set_information, only: [:show, :edit, :update, :destroy]
   
+  helper_method :resource_name
+  helper_method :form_object
+  helper_method :resource_path
+  helper_method :edit_resource_path
+
   def new
-    @basic_information = BasicInformation.new
+    @information = model.new
   end
 
   def create
-    if @basic_information = BasicInformation.create(basic_information_params)
-      redirect_to basic_informations_path, notice: "Information created"
+    if @information = model.create(information_params)
+      redirect_to resources_path, notice: "Information created"
     else
       render :new
     end
   end
 
   def index
-    @basic_informations = BasicInformation.all
+    @informations = model.all
   end
 
   def show
@@ -24,28 +29,55 @@ class BasicInformationsController < ApplicationController
   end
 
   def update
-    if @basic_information.update basic_information_params
-      redirect_to basic_informations_path, notice: "Information created"
+    if @information.update information_params
+      redirect_to resources_path, notice: "Information created"
     else
       render :edit
     end
   end
 
   def destroy
-    if @basic_information.delete
-      redirect_to basic_informations_path, notice: "Information deleted"
+    if @information.delete
+      redirect_to resources_path, notice: "Information deleted"
     else
-      redirect_to basic_informations_path, alert: "Can't delete information"
+      redirect_to resources_path, alert: "Can't delete information"
     end
   end
 
   private
 
-  def basic_information_params
-    params.require(:basic_information).permit(:name, :information_type, :value, :description)
+  def set_information
+    @information = model.find params['id']
+  end
+  
+  def information_params
+    params.require(resource_name).permit(:name, :information_type, :value, :description)
   end
 
-  def set_basic_information
-    @basic_information = BasicInformation.find params['id']
+  def resource_name
+    model.name.underscore
+  end
+
+  #override this method if this controller controls nested resources
+  def resources_path
+    polymorphic_path model
+  end
+
+  def resource_path object
+    polymorphic_path object
+  end
+
+  def edit_resource_path object
+    edit_polymorphic_path object
+  end
+
+  # override this method in child class
+
+  def model
+    BasicInformation
+  end
+
+  def form_object
+    @information
   end
 end
