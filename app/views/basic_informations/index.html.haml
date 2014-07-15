@@ -1,0 +1,11 @@
+%h1 Basic informations
+
+- if @basic_informations.empty?
+  %div There is no any basic informations
+- else
+  - @basic_informations.each do |basic_information|
+    = render layout: 'row_3cols', 
+        locals: {label: basic_information.name,
+            col2: link_to('show',basic_information_path(basic_information)),
+            col3: link_to('delete',basic_information_path(basic_information),method: :delete, data: {confirm: "Are you sure want to delete information?"})} do
+      = link_to basic_information.value, edit_basic_information_path(basic_information)

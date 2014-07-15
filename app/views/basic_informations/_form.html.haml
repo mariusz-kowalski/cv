@@ -1,0 +1,12 @@
+= bootstrap_form_for(@basic_information,
+    layout: :horizontal, 
+    label_col: 'col-sm-2', 
+    control_col: 'col-sm-10') do |f|
+  = f.alert_message "The form contains #{pluralize(@basic_information.errors.count, "error")}"
+  = f.error_summary
+  = f.text_field :name
+  = f.text_field :information_type
+  = f.text_area :value
+  = f.text_field :description
+  = f.form_group do
+    = f.submit

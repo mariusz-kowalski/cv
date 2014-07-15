@@ -1,3 +1,3 @@
 .row
   .col-sm-2= label
-  .col-sm-10= value
+  .col-sm-10= simple_format((yield_value = yield).empty? ? value : yield_value, nil, wrapper_tag: 'div')
