@@ -1,6 +1,11 @@
 class ListItemsController < BasicInformationsController
   # helper_method :list_items_path
   
+  def index
+    super
+    # @special_action_link = "<a>adasd</a>"
+  end
+
   def model
     # ListItem
     the_list.list_items

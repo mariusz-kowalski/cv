@@ -13,5 +13,5 @@
         locals: {label: information.name,
             col2: show_link,
             col3: delete_link,
-            col4: @special_action_link} do
+            col4: render('special', information: information)} do
       = link_to information.value, edit_resource_path(information)

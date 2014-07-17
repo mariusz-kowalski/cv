@@ -11,7 +11,8 @@ class BasicInformationsController < ApplicationController
   end
 
   def create
-    if @information = model.create(information_params)
+    @information = model.create(information_params)
+    if @information.save
       redirect_to resources_path, notice: "Information created"
     else
       render :new

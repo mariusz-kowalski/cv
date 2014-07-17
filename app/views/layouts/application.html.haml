@@ -6,5 +6,11 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    - flash.each do |type, message|
+      .container
+        .col-sm-12{class: flash_class(type), role: :alert}
+          %div{class: flash_icon(type)}
+          %a{href: "#", class: "close glyphicon glyphicon-remove", 'data-dismiss' => "alert"}
+          = message
     .container#main{role: :main}
       = yield

@@ -1,0 +1,8 @@
+- if information.list.ordinal > 0
+  = link_to "up", list_path(information.list, list: { ordinal: information.list.ordinal-1}), method: :patch 
+  - if information.list.ordinal < List.list(information.list_information).count - 1
+    \/
+- else
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- if information.list.ordinal < information.list.this_list.count - 1
+  = link_to "down", list_path(information.list, list: { ordinal: information.list.ordinal+1}), method: :patch

@@ -25,4 +25,19 @@ FactoryGirl.define do
     description '2 years of professional experience'
     association :list_information, factory: :programing_languages
   end
+
+  factory :languages, class: :list_information do
+    name 'languages'
+    information_type 'skills'
+    value 'languages'
+    description 'knowing of languages'
+
+    after(:create) do |list_information|
+      list_information.list_items.create name: 'polish', value: '5'
+      list_information.list_items.create name: 'english', value: '4'
+      list_information.list_items.create name: 'spanish', value: '2'
+      list_information.list_items.create name: 'german', value: '1'
+      list_information.list_items.create name: 'russian', value: '1'
+    end
+  end
 end

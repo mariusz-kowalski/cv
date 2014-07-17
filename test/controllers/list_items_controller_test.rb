@@ -18,6 +18,19 @@ class ListItemsControllerTest < ActionController::TestCase
     assert_equal '5', programing_languages.reload.list_items.first.value
   end
 
+  def test_create_multiple_for_order_test
+    list_item = FactoryGirl.create :ruby
+    programing_languages = list_item.list_information
+    put :create, list_information_id: programing_languages, list_item: {
+      name: 'java script',
+      information_type: 'skill',
+      value: '1',
+      description: 'no professional experience'
+    }
+    assert_redirected_to "/list_informations/#{programing_languages.id}/list_items"
+    assert_equal '1', programing_languages.reload.list_items.find_by(name: 'java script').value
+  end
+
   def test_index
     list_item = FactoryGirl.create :ruby
     get :index, list_information_id: list_item.list_information

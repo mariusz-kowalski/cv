@@ -32,10 +32,12 @@ ActiveRecord::Schema.define(version: 20140715110547) do
   end
 
   create_table "lists", id: false, force: true do |t|
-    t.integer "list_item_id"
-    t.integer "list_information_id"
+    t.integer "list_item_id",        default: 0, null: false
+    t.integer "list_information_id", default: 0, null: false
+    t.integer "ordinal",             default: 0, null: false
   end
 
+  add_index "lists", ["list_information_id", "ordinal"], name: "order_in_lists", unique: true
   add_index "lists", ["list_information_id"], name: "index_lists_on_list_information_id"
   add_index "lists", ["list_item_id"], name: "index_lists_on_list_item_id", unique: true
 
