@@ -38,7 +38,7 @@ class BasicInformationsController < ApplicationController
   end
 
   def destroy
-    if @information.delete
+    if @information.destroy
       redirect_to resources_path, notice: "Information deleted"
     else
       redirect_to resources_path, alert: "Can't delete information"
