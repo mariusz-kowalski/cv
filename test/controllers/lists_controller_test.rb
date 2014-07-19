@@ -6,7 +6,7 @@ class ListsControllerTest < ActionController::TestCase
     list_element = ListItem.find_by(name: 'german').list
     patch :update, id: list_element, list: {ordinal: 1}
 
-    assert_redirected_to "/list_informations/#{list_element.list_information.id}/list_items"
+    assert_redirected_to "/list_informations/#{list_element.superinformation.id}/list_items"
 
     assert_equal 0, ListItem.find_by(name: 'polish').list.ordinal
     assert_equal 1, ListItem.find_by(name: 'german').list.ordinal
@@ -20,7 +20,7 @@ class ListsControllerTest < ActionController::TestCase
     list_element = ListItem.find_by(name: 'english').list
     patch :update, id: list_element, list: {ordinal: 3}
 
-    assert_redirected_to "/list_informations/#{list_element.list_information.id}/list_items"
+    assert_redirected_to "/list_informations/#{list_element.superinformation.id}/list_items"
 
     assert_equal 0, ListItem.find_by(name: 'polish').list.ordinal
     assert_equal 1, ListItem.find_by(name: 'spanish').list.ordinal

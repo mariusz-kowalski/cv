@@ -20,39 +20,39 @@ class ListItemsControllerTest < ActionController::TestCase
 
   def test_index
     list_item = FactoryGirl.create :sys_admin
-    get :index, time_range_list_information_id: list_item.time_range_list_information
+    get :index, time_range_list_information_id: list_item.superinformation
     assert_response :success
     assert response.body['sys admin']
   end
 
   def test_edit
     list_item = FactoryGirl.create :sys_admin
-    get :edit, time_range_list_information_id: list_item.time_range_list_information, id: list_item
+    get :edit, time_range_list_information_id: list_item.superinformation, id: list_item
     assert_response :success
   end
 
   def test_update
     list_item = FactoryGirl.create :sys_admin
-    patch :update, time_range_list_information_id: list_item.time_range_list_information, id: list_item, list_item: {
+    patch :update, time_range_list_information_id: list_item.superinformation, id: list_item, list_item: {
       name: 'sys admin',
       information_type: 'role',
       value: 'Debian, Centos, Ubuntu'
     }
-    assert_redirected_to "/time_range_list_informations/#{list_item.time_range_list_information.id}/list_items"
+    assert_redirected_to "/time_range_list_informations/#{list_item.superinformation.id}/list_items"
     assert_equal 'Debian, Centos, Ubuntu', ListItem.find(list_item.id).value
   end
 
   def test_show
     list_item = FactoryGirl.create :sys_admin
-    get :show, time_range_list_information_id: list_item.time_range_list_information, id: list_item
+    get :show, time_range_list_information_id: list_item.superinformation, id: list_item
     assert_response :success
     assert response.body['sys admin']
   end
 
   def test_delete
     list_item = FactoryGirl.create :sys_admin
-    delete :destroy, time_range_list_information_id: list_item.time_range_list_information, id: list_item
-    assert_redirected_to "/time_range_list_informations/#{list_item.time_range_list_information.id}/list_items"
+    delete :destroy, time_range_list_information_id: list_item.superinformation, id: list_item
+    assert_redirected_to "/time_range_list_informations/#{list_item.superinformation.id}/list_items"
     assert_not ListItem.find_by(id: list_item.id)
   end
 end

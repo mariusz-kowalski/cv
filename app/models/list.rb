@@ -2,15 +2,13 @@ class List < ActiveRecord::Base
   self.primary_key = :list_item_id
   
   belongs_to :list_item
-  # belongs_to :list_information
-  # belongs_to :list_information, class_name: :TimeRangeListInformation
-  belongs_to :list_information, polymorphic: true
+  belongs_to :superinformation, class_name: :BasicInformation
 
-  validates :ordinal, uniqueness: { scope: :list_information }
+  validates :ordinal, uniqueness: { scope: :superinformation }
 
   before_validation :next_ordinal, on: :create
 
-  scope :list, ->(list_information){ where(list_information_id: list_information) }
+  scope :list, ->(superinformation){ where(superinformation_id: superinformation) }
 
   def update_ordinal new_ordinal
     new_ordinal = new_ordinal.to_i
@@ -33,7 +31,7 @@ class List < ActiveRecord::Base
   end
 
   def this_list
-    List.list(list_information_id)
+    List.list(superinformation_id)
   end
 
   private

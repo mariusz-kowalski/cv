@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719115636) do
+ActiveRecord::Schema.define(version: 20140719154021) do
 
   create_table "basic_informations", force: true do |t|
     t.string   "name",             limit: 60
@@ -32,15 +32,14 @@ ActiveRecord::Schema.define(version: 20140719115636) do
   end
 
   create_table "lists", id: false, force: true do |t|
-    t.integer "list_item_id",          default: 0, null: false
-    t.integer "list_information_id",   default: 0, null: false
-    t.integer "ordinal",               default: 0, null: false
-    t.string  "list_information_type"
+    t.integer "list_item_id",        default: 0, null: false
+    t.integer "superinformation_id", default: 0, null: false
+    t.integer "ordinal",             default: 0, null: false
   end
 
-  add_index "lists", ["list_information_id", "ordinal"], name: "order_in_lists", unique: true
-  add_index "lists", ["list_information_id"], name: "index_lists_on_list_information_id"
   add_index "lists", ["list_item_id"], name: "index_lists_on_list_item_id", unique: true
+  add_index "lists", ["superinformation_id", "ordinal"], name: "order_in_lists", unique: true
+  add_index "lists", ["superinformation_id"], name: "index_lists_on_superinformation_id"
 
   create_table "time_ranges", id: false, force: true do |t|
     t.integer "time_range_information_id", default: 0, null: false

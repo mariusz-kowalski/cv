@@ -23,7 +23,7 @@ FactoryGirl.define do
     information_type 'skill'
     value '5'
     description '2 years of professional experience'
-    association :list_information, factory: :programing_languages
+    association :superinformation, factory: :programing_languages
   end
 
   factory :languages, class: :list_information do
@@ -74,6 +74,6 @@ FactoryGirl.define do
     information_type 'role'
     value 'Debian, Centos'
     description 'web application servers, baskup'
-    association :time_range_list_information, factory: :work_place_A
+    association :superinformation, factory: :work_place_A
   end
 end

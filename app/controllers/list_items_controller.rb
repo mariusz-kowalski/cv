@@ -1,8 +1,6 @@
 class ListItemsController < BasicInformationsController
-  # helper_method :list_items_path
   
   def model
-    # ListItem
     the_list.list_items
   end
 
@@ -26,10 +24,8 @@ class ListItemsController < BasicInformationsController
   end
 
   def the_list
-    if params["list_information_id"]
-      @the_list ||= ListInformation.find(params["list_information_id"])
-    elsif params["time_range_list_information_id"]
-      @the_list ||= TimeRangeListInformation.find(params["time_range_list_information_id"])
-    end
+    id_key, id = params.find{ |key, value| key =~ /.+_id/ }
+    information_class = id_key[0...-3].classify.constantize
+    @the_list ||= information_class.find(id)
   end
 end

@@ -20,7 +20,7 @@ class ListItemsControllerTest < ActionController::TestCase
 
   def test_create_multiple_for_order_test
     list_item = FactoryGirl.create :ruby
-    programing_languages = list_item.list_information
+    programing_languages = list_item.superinformation
     put :create, list_information_id: programing_languages, list_item: {
       name: 'java script',
       information_type: 'skill',
@@ -33,40 +33,40 @@ class ListItemsControllerTest < ActionController::TestCase
 
   def test_index
     list_item = FactoryGirl.create :ruby
-    get :index, list_information_id: list_item.list_information
+    get :index, list_information_id: list_item.superinformation
     assert_response :success
     assert response.body['ruby']
   end
 
   def test_edit
     list_item = FactoryGirl.create :ruby
-    get :edit, list_information_id: list_item.list_information, id: list_item
+    get :edit, list_information_id: list_item.superinformation, id: list_item
     assert_response :success
   end
 
   def test_update
     list_item = FactoryGirl.create :ruby
-    patch :update, list_information_id: list_item.list_information, id: list_item, list_item: {
+    patch :update, list_information_id: list_item.superinformation, id: list_item, list_item: {
       name: 'ruby',
       information_type: 'skill',
       value: '4',
       description: '1 years of professional experience'
     }
-    assert_redirected_to "/list_informations/#{list_item.list_information.id}/list_items"
+    assert_redirected_to "/list_informations/#{list_item.superinformation.id}/list_items"
     assert_equal '4', ListItem.find(list_item.id).value
   end
 
   def test_show
     list_item = FactoryGirl.create :ruby
-    get :show, list_information_id: list_item.list_information, id: list_item
+    get :show, list_information_id: list_item.superinformation, id: list_item
     assert_response :success
     assert response.body['ruby']
   end
 
   def test_delete
     list_item = FactoryGirl.create :ruby
-    delete :destroy, list_information_id: list_item.list_information, id: list_item
-    assert_redirected_to "/list_informations/#{list_item.list_information.id}/list_items"
+    delete :destroy, list_information_id: list_item.superinformation, id: list_item
+    assert_redirected_to "/list_informations/#{list_item.superinformation.id}/list_items"
     assert_not ListItem.find_by(id: list_item.id)
   end
 end
