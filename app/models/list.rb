@@ -2,7 +2,9 @@ class List < ActiveRecord::Base
   self.primary_key = :list_item_id
   
   belongs_to :list_item
-  belongs_to :list_information
+  # belongs_to :list_information
+  # belongs_to :list_information, class_name: :TimeRangeListInformation
+  belongs_to :list_information, polymorphic: true
 
   validates :ordinal, uniqueness: { scope: :list_information }
 
@@ -27,7 +29,6 @@ class List < ActiveRecord::Base
         element.update ordinal: element.ordinal - 1
       end
     end
-    # binding.pry
     update_attribute :ordinal, new_ordinal
   end
 

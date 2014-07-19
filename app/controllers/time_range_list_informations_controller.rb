@@ -1,0 +1,2 @@
+class TimeRangeListInformationsController < BasicInformationsController
+end

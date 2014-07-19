@@ -72,10 +72,8 @@ class BasicInformationsController < ApplicationController
     edit_polymorphic_path object
   end
 
-  # override this method in child class
-
   def model
-    BasicInformation
+    Kernel.const_get self.class.name[0...-11]
   end
 
   def form_object

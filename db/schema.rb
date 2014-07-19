@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717112925) do
+ActiveRecord::Schema.define(version: 20140719115636) do
 
   create_table "basic_informations", force: true do |t|
     t.string   "name",             limit: 60
@@ -32,9 +32,10 @@ ActiveRecord::Schema.define(version: 20140717112925) do
   end
 
   create_table "lists", id: false, force: true do |t|
-    t.integer "list_item_id",        default: 0, null: false
-    t.integer "list_information_id", default: 0, null: false
-    t.integer "ordinal",             default: 0, null: false
+    t.integer "list_item_id",          default: 0, null: false
+    t.integer "list_information_id",   default: 0, null: false
+    t.integer "ordinal",               default: 0, null: false
+    t.string  "list_information_type"
   end
 
   add_index "lists", ["list_information_id", "ordinal"], name: "order_in_lists", unique: true

@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   end
   resources :lists, only: [:update]
   resources :time_range_informations
+  resources :time_range_list_informations do
+    resources :list_items
+  end
 end

@@ -4,10 +4,6 @@ class TimeRangeInformationsController < BasicInformationsController
     @information
   end
 
-  def model
-    TimeRangeInformation
-  end
-
   def information_params
     params.require(resource_name).permit(:name, :information_type, :value, :description, time_range_attributes: [:begin, :end])
   end

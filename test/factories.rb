@@ -61,4 +61,19 @@ FactoryGirl.define do
       )
     end
   end
+
+  factory :work_place_A, class: :time_range_list_information do
+    name 'place A'
+    information_type 'employment'
+    value 'application administrator'
+    description 'http://example.com'
+  end
+
+  factory :sys_admin, class: :list_item do
+    name 'sys admin'
+    information_type 'role'
+    value 'Debian, Centos'
+    description 'web application servers, baskup'
+    association :time_range_list_information, factory: :work_place_A
+  end
 end

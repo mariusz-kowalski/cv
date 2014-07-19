@@ -1,11 +1,6 @@
 class ListItemsController < BasicInformationsController
   # helper_method :list_items_path
   
-  def index
-    super
-    # @special_action_link = "<a>adasd</a>"
-  end
-
   def model
     # ListItem
     the_list.list_items
@@ -31,6 +26,10 @@ class ListItemsController < BasicInformationsController
   end
 
   def the_list
-    @the_list ||= ListInformation.find(params["list_information_id"])
+    if params["list_information_id"]
+      @the_list ||= ListInformation.find(params["list_information_id"])
+    elsif params["time_range_list_information_id"]
+      @the_list ||= TimeRangeListInformation.find(params["time_range_list_information_id"])
+    end
   end
 end

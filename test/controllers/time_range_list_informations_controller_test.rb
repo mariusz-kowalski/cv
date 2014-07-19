@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BasicInformationTest < ActiveSupport::TestCase
+class TimeRangeListInformationsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
