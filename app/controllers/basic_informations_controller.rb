@@ -1,6 +1,6 @@
 class BasicInformationsController < ApplicationController
   before_action :set_information, only: [:show, :edit, :update, :destroy]
-  
+
   helper_method :resource_name
   helper_method :form_object
   helper_method :resource_path
@@ -13,7 +13,7 @@ class BasicInformationsController < ApplicationController
   def create
     @information = model.create(information_params)
     if @information.save
-      redirect_to resources_path, notice: "Information created"
+      redirect_to resources_path, notice: 'Information created'
     else
       render :new
     end
@@ -31,7 +31,7 @@ class BasicInformationsController < ApplicationController
 
   def update
     if @information.update information_params
-      redirect_to resources_path, notice: "Information created"
+      redirect_to resources_path, notice: 'Information created'
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class BasicInformationsController < ApplicationController
 
   def destroy
     if @information.destroy
-      redirect_to resources_path, notice: "Information deleted"
+      redirect_to resources_path, notice: 'Information deleted'
     else
       redirect_to resources_path, alert: "Can't delete information"
     end
@@ -50,25 +50,29 @@ class BasicInformationsController < ApplicationController
   def set_information
     @information = model.find params['id']
   end
-  
+
   def information_params
-    params.require(resource_name).permit(:name, :information_type, :value, :description)
+    params.require(resource_name).permit(
+      :name,
+      :information_type,
+      :value,
+      :description)
   end
 
   def resource_name
     model.name.underscore
   end
 
-  #override this method if this controller controls nested resources
+  # override this method if this controller controls nested resources
   def resources_path
     polymorphic_path model
   end
 
-  def resource_path object
+  def resource_path(object)
     polymorphic_path object
   end
 
-  def edit_resource_path object
+  def edit_resource_path(object)
     edit_polymorphic_path object
   end
 

@@ -57,7 +57,7 @@ FactoryGirl.define do
       information.create_time_range(
         :begin => '01/01/2000', 
         :end => '01/01/2005', 
-        :time_range_information => information
+        :information => information
       )
     end
   end
@@ -75,5 +75,19 @@ FactoryGirl.define do
     value 'Debian, Centos'
     description 'web application servers, baskup'
     association :superinformation, factory: :work_place_A
+  end
+
+  factory :work_place_B, class: :time_range_list_information do
+    name 'place B'
+    information_type 'employment'
+    value 'application administrator'
+    description 'http://example.com'
+    after(:create) do |information|
+      information.create_time_range(
+        :begin => '01/01/2000', 
+        :end => '01/01/2005', 
+        :information => information
+      )
+    end
   end
 end

@@ -1,7 +1,7 @@
 class TimeRange < ActiveRecord::Base
-  self.primary_key = :time_range_information_id
+  self.primary_key = :information_id
 
-  belongs_to :time_range_information
+  belongs_to :information, class_name: :BasicInformation
 
   validate :validate_time_range
 

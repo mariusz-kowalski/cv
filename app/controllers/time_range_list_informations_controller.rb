@@ -1,2 +1,3 @@
 class TimeRangeListInformationsController < BasicInformationsController
+  include TimeRangeControllerConcern
 end
