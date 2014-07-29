@@ -16,7 +16,7 @@ class ListsControllerTest < ActionController::TestCase
   end
 
   def test_down
-    FactoryGirl.create :languages
+    FactoryGirl.create :languages_rando_order
     list_element = ListItem.find_by(name: 'english').list
     patch :update, id: list_element, list: {ordinal: 3}
 

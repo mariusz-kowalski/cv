@@ -41,6 +41,27 @@ FactoryGirl.define do
     end
   end
 
+  factory :languages_random_order, class: :list_information do
+    name 'languages'
+    information_type 'skills'
+    value 'languages'
+    description 'knowing of languages'
+
+    after(:create) do |list_information|
+      polish = list_information.list_items.create name: 'polish', value: '5'
+      english = list_information.list_items.create name: 'english', value: '4'
+      spanish = list_information.list_items.create name: 'spanish', value: '2'
+      german = list_information.list_items.create name: 'german', value: '1'
+      russian = list_information.list_items.create name: 'russian', value: '1'
+
+      russian.list.update_ordinal 0
+      spanish.reload.list.update_ordinal 1
+      german.reload.list.update_ordinal 2
+      english.reload.list.update_ordinal 3
+      polish.reload.list.update_ordinal 4
+    end
+  end
+
   factory :university, class: :time_range_information do
     name 'University of Wrocław'
     information_type 'education'

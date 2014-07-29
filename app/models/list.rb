@@ -15,6 +15,7 @@ class List < ActiveRecord::Base
     new_ordinal = new_ordinal.to_i
     return true if new_ordinal == ordinal
     old_ordinal = ordinal
+    # binding.pry
     next_ordinal
     save!
     if new_ordinal < old_ordinal
@@ -28,11 +29,14 @@ class List < ActiveRecord::Base
         element.update! ordinal: element.ordinal - 1
       end
     end
-    update_attribute :ordinal, new_ordinal
+    update! ordinal: new_ordinal
+    # binding.pry
   end
 
   def order_after_destroy record
-    this_list.where("ordinal > #{record.ordinal}").update_all('ordinal = ordinal - 1')
+    this_list.where("ordinal > ?", record.ordinal).each do |element|
+      element.update! ordinal: element.ordinal - 1
+    end
   end
 
   def this_list

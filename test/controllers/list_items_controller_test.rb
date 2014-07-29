@@ -64,9 +64,16 @@ class ListItemsControllerTest < ActionController::TestCase
   end
 
   def test_delete
-    list_item = FactoryGirl.create :ruby
+    FactoryGirl.create :languages_random_order
+    list_item = ListItem.find_by(name: 'spanish')
     delete :destroy, list_information_id: list_item.superinformation, id: list_item
+    
     assert_redirected_to "/list_informations/#{list_item.superinformation.id}/list_items"
     assert_not ListItem.find_by(id: list_item.id)
+
+    assert_equal 0, ListItem.find_by(name: 'russian').list.ordinal
+    assert_equal 1, ListItem.find_by(name: 'german').list.ordinal
+    assert_equal 2, ListItem.find_by(name: 'english').list.ordinal
+    assert_equal 3, ListItem.find_by(name: 'polish').list.ordinal
   end
 end
