@@ -1,0 +1,15 @@
+= bootstrap_form_for(form_object,
+    layout: :horizontal, 
+    label_col: 'col-sm-2', 
+    control_col: 'col-sm-10') do |f|
+  = f.alert_message "The form contains #{pluralize(@information.errors.count, "error")}"
+  = f.error_summary
+  = f.text_field :name
+  = f.text_field :information_type
+  = f.text_area :value
+  = f.text_field :description
+  = f.fields_for :time_range do |f|
+    = f.date_field :begin, id: 'datepicker_begin', value: form_object.time_range.begin.to_s
+    = f.date_field :end, id: 'datepicker_end', value: form_object.time_range.end.to_s
+  = f.form_group do
+    = f.submit

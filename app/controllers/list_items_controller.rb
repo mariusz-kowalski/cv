@@ -10,17 +10,12 @@ class ListItemsController < BasicInformationsController
     [the_list, @information]
   end
 
+  def self.object_for_polymorphic_path object
+    [object.superinformation, object]
+  end
+
   def resources_path
-    # polymorphic_path [ the_list, model ]
-    polymorphic_path [ the_list, ListItem ]
-  end
-
-  def resource_path object
-    polymorphic_path [ the_list, object ]
-  end
-
-  def edit_resource_path object
-    edit_polymorphic_path [ the_list, object ]
+    polymorphic_path [the_list, ListItem]
   end
 
   def the_list

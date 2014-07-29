@@ -1,10 +1,10 @@
 class BasicInformationsController < ApplicationController
   before_action :set_information, only: [:show, :edit, :update, :destroy]
 
-  helper_method :resource_name
   helper_method :form_object
-  helper_method :resource_path
-  helper_method :edit_resource_path
+  helper_method :resource_name
+  # helper_method :resource_path
+  # helper_method :edit_resource_path
 
   def new
     @information = model.new
@@ -20,10 +20,27 @@ class BasicInformationsController < ApplicationController
   end
 
   def index
-    @informations = model.all
+    if model == BasicInformation
+      @informations = model.where(select_params.merge(type: nil)).default_order
+    else
+      if select_params.any?
+        @informations = model.where(select_params).default_order
+      else
+        @informations = model.all.default_order
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.fragment { render 'index.html.haml', format: :html, layout: nil }
+    end
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.fragment { render 'show.html.haml', format: :html, layout: nil }
+    end
   end
 
   def edit
@@ -59,6 +76,14 @@ class BasicInformationsController < ApplicationController
       :description)
   end
 
+  def select_params
+    params.permit(
+      :name,
+      :information_type,
+      :value,
+      :description)
+  end
+
   def resource_name
     model.name.underscore
   end
@@ -68,12 +93,21 @@ class BasicInformationsController < ApplicationController
     polymorphic_path model
   end
 
-  def resource_path(object)
-    polymorphic_path object
+  # def resource_path object
+  # 	polymorphic_path self.class.object_for_polymorphic_path object
+  # end
+
+  # def edit_resource_path object
+  # 	binding.pry
+  # 	edit_polymorphic_path self.class.object_for_polymorphic_path object
+  # end
+
+  def self.object_for_polymorphic_path object
+    object
   end
 
-  def edit_resource_path(object)
-    edit_polymorphic_path object
+  def self.class_for_polymorphic_path
+    Kernel.const_get self.class.name[0...-11]
   end
 
   def model

@@ -3,3 +3,5 @@
 - else
   - @informations.each do |information|
     = render template: 'basic_informations/show', locals: { information: information }
+    - information.list_items.each do |list_item|
+      = render template: 'basic_informations/show', locals: { information: list_item }

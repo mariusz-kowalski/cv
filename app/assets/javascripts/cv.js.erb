@@ -1,0 +1,29 @@
+function load_into(url, target) {
+  var jqxhr = $.get(url, function(data){
+    $(target).html(data);
+  });
+
+  jqxhr.fail(function() {
+    $(target).text( "Error. Code: " + jqxhr.status + ", message: " + jqxhr.statusText );
+  });
+}
+
+$(function(){
+  load_into('<%= id_informations_show_path format: :fragment %>', '#id-informations');
+  <%# TODO: do something with this ruby - js mishmash :D %>
+  <% if address %>
+    load_into('<%= basic_information_path address, format: :fragment %>', '#address');
+  <% end %>
+  <% if phone_number %>
+    load_into('<%= basic_information_path phone_number, format: :fragment %>', '#phone-number');
+  <% end %>
+  <% if email %>
+    load_into('<%= basic_information_path email, format: :fragment %>', '#email');
+  <% end %>
+
+  load_into('<%= time_range_list_informations_path format: :fragment %>', '#employment');
+
+  load_into('<%= list_informations_path format: :fragment %>', '#skills');
+
+  load_into('<%= time_range_informations_path format: :fragment %>', '#education')
+});

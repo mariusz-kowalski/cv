@@ -1,6 +1,6 @@
 - if information.list.ordinal > 0
   = link_to "up", list_path(information.list, list: { ordinal: information.list.ordinal-1}), method: :patch 
-  - if information.list.ordinal < List.list(information.list_information).count - 1
+  - if information.list.ordinal < List.list(information.superinformation).count - 1
     \/
 - else
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -7,6 +7,7 @@ class List < ActiveRecord::Base
   validates :ordinal, uniqueness: { scope: :superinformation }
 
   before_validation :next_ordinal, on: :create
+  after_destroy ->(record){ order_after_destroy record }
 
   scope :list, ->(superinformation){ where(superinformation_id: superinformation) }
 
@@ -19,15 +20,19 @@ class List < ActiveRecord::Base
     if new_ordinal < old_ordinal
       range = new_ordinal...old_ordinal
       this_list.where(ordinal: range).order(ordinal: :desc).each do |element| 
-        element.update ordinal: element.ordinal + 1
+        element.update! ordinal: element.ordinal + 1
       end
     else
       range = (old_ordinal + 1)..new_ordinal
       this_list.where(ordinal: range).order(ordinal: :asc).each do |element|
-        element.update ordinal: element.ordinal - 1
+        element.update! ordinal: element.ordinal - 1
       end
     end
     update_attribute :ordinal, new_ordinal
+  end
+
+  def order_after_destroy record
+    this_list.where("ordinal > #{record.ordinal}").update_all('ordinal = ordinal - 1')
   end
 
   def this_list

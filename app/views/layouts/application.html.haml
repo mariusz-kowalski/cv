@@ -13,4 +13,5 @@
           %a{href: "#", class: "close glyphicon glyphicon-remove", 'data-dismiss' => "alert"}
           = message
     .container#main{role: :main}
+      %h1= resource_name.humanize if defined? resource_name
       = yield

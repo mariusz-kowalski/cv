@@ -1,3 +1,17 @@
-%h1 Information
-
-= render 'row', label: @information.name, value: @information.value
+- information ||= @information
+- show_link = link_to '', 
+    resource_path(information), 
+    class: 'glyphicon glyphicon-file', 
+    title: 'show'
+- delete_link = link_to '',
+    resource_path(information), 
+    class: 'glyphicon glyphicon-remove', 
+    title: 'remowe!',
+    method: :delete, 
+    data: {confirm: 'Are you sure want to delete information?'}
+= render layout: 'row_4cols', 
+    locals: {label: information.name,
+        col2: information.description,
+        col3: render('special', information: information),
+        col4: show_link + ' ' + delete_link} do
+  = link_to information.value, edit_resource_path(information)

@@ -24,4 +24,18 @@ module ApplicationHelper
       else "glyphicon glyphicon-info-sign"
     end
   end
+
+  def resource_path object
+    controller = "#{object.class.name}sController".constantize
+    polymorphic_path controller.object_for_polymorphic_path(object)
+  end
+
+  def edit_resource_path object
+    controller = "#{object.class.name}sController".constantize
+    edit_polymorphic_path controller.object_for_polymorphic_path(object)
+  end
+
+  # def resource_name
+  # 	# controller = "#{object.class.name}sController".constantize
+  # end
 end
