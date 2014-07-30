@@ -3,8 +3,6 @@ class BasicInformationsController < ApplicationController
 
   helper_method :form_object
   helper_method :resource_name
-  # helper_method :resource_path
-  # helper_method :edit_resource_path
 
   def new
     @information = model.new
@@ -29,18 +27,9 @@ class BasicInformationsController < ApplicationController
         @informations = model.all.default_order
       end
     end
-
-    respond_to do |format|
-      format.html
-      format.fragment { render 'index.html.haml', format: :html, layout: nil }
-    end
   end
 
   def show
-    respond_to do |format|
-      format.html
-      format.fragment { render 'show.html.haml', format: :html, layout: nil }
-    end
   end
 
   def edit
@@ -91,18 +80,9 @@ class BasicInformationsController < ApplicationController
   # override this method if this controller controls nested resources
   def resources_path
     polymorphic_path model
-  end
+  def
 
-  # def resource_path object
-  # 	polymorphic_path self.class.object_for_polymorphic_path object
-  # end
-
-  # def edit_resource_path object
-  # 	binding.pry
-  # 	edit_polymorphic_path self.class.object_for_polymorphic_path object
-  # end
-
-  def self.object_for_polymorphic_path object
+  end self.object_for_polymorphic_path object
     object
   end
 
