@@ -20,7 +20,7 @@ class TimeRangeInformationTest < ActiveSupport::TestCase
     assert_not TimeRange.find_by :begin => '01/01/2000'.to_date, 'end' => '01/01/2005'.to_date
   end
 
-  def test_default_order
+  def X_test_default_order
     FactoryGirl.create :university_gdansk
     FactoryGirl.create :university_wroclaw
     FactoryGirl.create :university_torun

@@ -16,16 +16,16 @@ class ListsControllerTest < ActionController::TestCase
   end
 
   def test_down
-    FactoryGirl.create :languages_rando_order
-    list_element = ListItem.find_by(name: 'english').list
+    FactoryGirl.create :languages_random_order
+    list_element = ListItem.find_by(name: 'spanish').list
     patch :update, id: list_element, list: {ordinal: 3}
 
     assert_redirected_to "/list_informations/#{list_element.superinformation.id}/list_items"
 
-    assert_equal 0, ListItem.find_by(name: 'polish').list.ordinal
-    assert_equal 1, ListItem.find_by(name: 'spanish').list.ordinal
-    assert_equal 2, ListItem.find_by(name: 'german').list.ordinal
-    assert_equal 3, ListItem.find_by(name: 'english').list.ordinal
-    assert_equal 4, ListItem.find_by(name: 'russian').list.ordinal
+    assert_equal 0, ListItem.find_by(name: 'russian').list.ordinal
+    assert_equal 1, ListItem.find_by(name: 'german').list.ordinal
+    assert_equal 2, ListItem.find_by(name: 'english').list.ordinal
+    assert_equal 3, ListItem.find_by(name: 'spanish').list.ordinal
+    assert_equal 4, ListItem.find_by(name: 'polish').list.ordinal
   end
 end
