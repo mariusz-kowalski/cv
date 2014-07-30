@@ -80,9 +80,9 @@ class BasicInformationsController < ApplicationController
   # override this method if this controller controls nested resources
   def resources_path
     polymorphic_path model
-  def
+  end
 
-  end self.object_for_polymorphic_path object
+  def self.object_for_polymorphic_path object
     object
   end
 

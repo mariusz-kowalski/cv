@@ -95,6 +95,19 @@ FactoryGirl.define do
     end
   end
 
+  factory :university_opole, class: :time_range_information do
+    name 'University of Opole'
+    information_type 'education'
+    value 'Physics Sience'
+    description 'Theoretical Physics'
+    after(:create) do |information|
+      information.create_time_range(
+        :begin => '01/01/2001', 
+        :end => nil, 
+        :information => information)
+    end
+  end
+
   factory :university_torun, class: :time_range_information do
     name 'University of Torun'
     information_type 'education'

@@ -25,8 +25,10 @@ class TimeRangeInformationTest < ActiveSupport::TestCase
     FactoryGirl.create :university_wroclaw
     FactoryGirl.create :university_torun
     FactoryGirl.create :university_krakow
+    FactoryGirl.create :university_opole
 
     assert_equal [
+      'University of Opole',
       'University of Wroclaw', 
       'University of Kraków', 
       'University of Torun', 
