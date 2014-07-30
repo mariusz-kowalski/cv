@@ -78,8 +78,46 @@ FactoryGirl.define do
       information.create_time_range(
         :begin => '01/01/2000', 
         :end => '01/01/2005', 
-        :information => information
-      )
+        :information => information)
+    end
+  end
+
+  factory :university_wroclaw, class: :time_range_information do
+    name 'University of Wroclaw'
+    information_type 'education'
+    value 'Physics Sience'
+    description 'Theoretical Physics'
+    after(:create) do |information|
+      information.create_time_range(
+        :begin => '01/01/2000', 
+        :end => nil, 
+        :information => information)
+    end
+  end
+
+  factory :university_torun, class: :time_range_information do
+    name 'University of Torun'
+    information_type 'education'
+    value 'Physics Sience'
+    description 'Theoretical Physics'
+    after(:create) do |information|
+      information.create_time_range(
+        :begin => '01/01/1998', 
+        :end => '01/01/1999', 
+        :information => information)
+    end
+  end
+
+  factory :university_gdansk, class: :time_range_information do
+    name 'University of Gdansk'
+    information_type 'education'
+    value 'Physics Sience'
+    description 'Theoretical Physics'
+    after(:create) do |information|
+      information.create_time_range(
+        :begin => '01/01/1997', 
+        :end => '01/01/1999', 
+        :information => information)
     end
   end
 

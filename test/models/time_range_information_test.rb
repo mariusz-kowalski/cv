@@ -19,4 +19,18 @@ class TimeRangeInformationTest < ActiveSupport::TestCase
     assert_not TimeRangeInformation.find_by name: 'University of Kraków'
     assert_not TimeRange.find_by :begin => '01/01/2000'.to_date, 'end' => '01/01/2005'.to_date
   end
+
+  def test_default_order
+    FactoryGirl.create :university_gdansk
+    FactoryGirl.create :university_wroclaw
+    FactoryGirl.create :university_torun
+    FactoryGirl.create :university_krakow
+
+    assert_equal [
+      'University of Wroclaw', 
+      'University of Kraków', 
+      'University of Torun', 
+      'University of Gdansk' ] ,
+      TimeRangeInformation.all.default_order.map(&:name).to_a
+  end
 end
