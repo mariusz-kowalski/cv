@@ -2,16 +2,51 @@
 
 %h2 PERSONAL DETAILS
 
-#id-informations
-#address
-#phone-number
-#email
+.row
+  .col-sm-6
+    = small_pos 'name' do
+      - @names
+
+    - @phones && @phones.each do |phone|
+      = small_pos phone.name do 
+        = phone.value
+
+    - @emails && @emails.each do |email|
+      = small_pos email.name do 
+        = email.value
+
+    - if @address
+      = small_pos 'address' do
+        = simple_format(@address.value, nil, wrapper_tag: 'div')
+  .col-sm-6 QR
 
 %h2 EMPLOYMENT HISTORY
-#employment
+- @employments && @employments.each do |employment|
+  = pos range(employment.time_range) do
+    = render 'three_cols', col1: employment.value, col2: employment.name, col3: employment.description
+  - employment.list_items.each do |role|
+    = li role.name do
+      = role.value
+
+%h2 LINKS
+- @links && @links.list_items.each do |link|
+  = li link.name do
+    %a{href: link.value}= link.description.empty? ? link.value : link.description
 
 %h2 KEY SKILLS
-#skills
+- @skills && @skills.each do |skill|
+  .row
+    .col-sm-12= skill.name
+  - skill.list_items.each do |skill|
+    = li skill.name do
+      = skill.value
 
 %h2 EDUCATION
-#education
+- @educations && @educations.each do |education|
+  = pos range(education.time_range) do
+    = render 'three_cols', col1: education.value, col2: education.name, col3: education.description
+
+%h2 HOBBIES & INTRESTS
+- @hobbies && @hobbies.list_items.each do |hobby|
+  = li hobby.value do
+    = hobby.description
