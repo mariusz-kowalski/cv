@@ -1,0 +1,5 @@
+%table
+  - qr.modules.each_index do |x|
+    %tr
+      - qr.modules.each_index do |y|
+        %td{class: (qr.dark?(x,y) ? 'black' : 'white')}

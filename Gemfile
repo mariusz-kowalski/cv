@@ -55,3 +55,6 @@ end
 
 gem 'jquery-ui-rails'
 # gem 'jquery_datepicker'
+
+gem 'rqrcode'
+gem 'vpim'

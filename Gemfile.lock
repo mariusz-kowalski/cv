@@ -107,6 +107,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rqrcode (0.4.2)
     rubyzip (1.1.6)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -147,6 +148,7 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    vpim (13.11.11)
     websocket (1.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -166,6 +168,7 @@ DEPENDENCIES
   jquery-ui-rails
   pry-nav
   rails (= 4.1.4)
+  rqrcode
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
@@ -173,3 +176,4 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+  vpim

@@ -1,0 +1,73 @@
+// Place all the styles related to the cv controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$gray: rgb(150, 150, 150)
+
+$light_gray: rgb(180, 180, 180)
+
+#main
+  font-family: 'Arial'
+  text-align: justify
+
+  h1
+    text-align: center
+    color: $gray
+
+  h2
+    font-family: "Arial Black"
+    color: $light_gray
+    margin-top: 50px
+
+  strong.name
+    font-size: 16pt
+
+  .pos
+    margin-top: 30px
+    margin-bottom: 10px
+
+  .pos .value
+    font-size: 14pt
+
+  .row.li
+    margin-left: 0px
+    margin-right: 0px
+    
+  .row.li
+    border-top: dotted 1px $light_gray
+
+  .row.li:first-child
+    border-top: none
+
+  .row.li .col-sm-3 li
+    // margin-left: 50px
+
+  .description
+    font-family: "Times New Roman"
+
+  .vcard-qr table
+    float: right
+
+$qr_size: 3px
+
+table
+  border-width: 0
+  border-style: none
+  border-color: #0000ff
+  border-collapse: collapse
+
+td
+  border-width: 0
+  border-style: none
+  border-color: #0000ff
+  border-collapse: collapse
+  padding: 0
+  margin: 0
+  width: $qr_size
+  height: $qr_size
+
+.black
+  background-color: black
+
+.white
+  background-color: white

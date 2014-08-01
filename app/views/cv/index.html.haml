@@ -1,15 +1,17 @@
-%h1 CV
+%h1 CURRICULUM VITAE
 
-%h2 PERSONAL DETAILS
+%h2
+  %span.glyphicon.glyphicon-user
+  %span PERSONAL DETAILS
 
 .row
   .col-sm-6
     = small_pos 'name' do
-      - @names
+      %strong.name= @names
 
     - @phones && @phones.each do |phone|
       = small_pos phone.name do 
-        = phone.value
+        %strong.name= phone.value
 
     - @emails && @emails.each do |email|
       = small_pos email.name do 
@@ -18,35 +20,50 @@
     - if @address
       = small_pos 'address' do
         = simple_format(@address.value, nil, wrapper_tag: 'div')
-  .col-sm-6 QR
+  .col-sm-6.vcard-qr= render 'qr', qr: @qr
 
-%h2 EMPLOYMENT HISTORY
+%h2
+  %span.glyphicon.glyphicon-briefcase
+  %span EMPLOYMENT HISTORY
 - @employments && @employments.each do |employment|
   = pos range(employment.time_range) do
     = render 'three_cols', col1: employment.value, col2: employment.name, col3: employment.description
-  - employment.list_items.each do |role|
-    = li role.name do
-      = role.value
+  .ul
+    - employment.list_items.each do |role|
+      = li role.name do
+        = role.value
 
-%h2 LINKS
-- @links && @links.list_items.each do |link|
-  = li link.name do
-    %a{href: link.value}= link.description.empty? ? link.value : link.description
+%h2
+  %span.glyphicon.glyphicon-link 
+  %span LINKS
+.ul
+  - @links && @links.list_items.each do |link|
+    = li link.name do
+      %a{href: link.value}= link.description.empty? ? link.value : link.description
 
-%h2 KEY SKILLS
+%h2
+  %span.glyphicon.glyphicon-wrench
+  %span KEY SKILLS
 - @skills && @skills.each do |skill|
-  .row
-    .col-sm-12= skill.name
-  - skill.list_items.each do |skill|
-    = li skill.name do
-      = skill.value
+  .row.pos
+    .col-sm-12.value
+      %strong= skill.name
+  .ul
+    - skill.list_items.each do |skill|
+      = li skill.name do
+        = skill.value
 
-%h2 EDUCATION
+%h2
+  %span.glyphicon.glyphicon-tower
+  %span EDUCATION
 - @educations && @educations.each do |education|
   = pos range(education.time_range) do
     = render 'three_cols', col1: education.value, col2: education.name, col3: education.description
 
-%h2 HOBBIES & INTRESTS
-- @hobbies && @hobbies.list_items.each do |hobby|
-  = li hobby.value do
-    = hobby.description
+%h2
+  %span.glyphicon.glyphicon-heart
+  %span HOBBIES & INTRESTS
+.ul
+  - @hobbies && @hobbies.list_items.each do |hobby|
+    = li hobby.value do
+      = hobby.description
