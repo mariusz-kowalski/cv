@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'cv#index'
+  get 'cv' => 'cv#index'
 
   resources :basic_informations
   resources :list_informations do

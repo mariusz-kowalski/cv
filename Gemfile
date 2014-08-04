@@ -58,3 +58,5 @@ gem 'jquery-ui-rails'
 
 gem 'rqrcode'
 gem 'vpim'
+
+gem 'wicked_pdf'

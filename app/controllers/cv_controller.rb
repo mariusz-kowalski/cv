@@ -27,5 +27,16 @@ class CvController < ApplicationController
     end
     # binding.pry
     @qr = RQRCode::QRCode.new(vcard.to_s, size: 6, level: :l)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render(
+          pdf: 'file_name',
+          layout: 'application.pdf',
+          show_as_html: params[:debug].present?
+        )
+      end
+    end
   end
 end

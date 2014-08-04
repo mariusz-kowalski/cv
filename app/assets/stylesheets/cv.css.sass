@@ -6,6 +6,8 @@ $gray: rgb(150, 150, 150)
 
 $light_gray: rgb(180, 180, 180)
 
+$qr_size: 4px
+
 #main
   font-family: 'Arial'
   text-align: justify
@@ -16,8 +18,11 @@ $light_gray: rgb(180, 180, 180)
 
   h2
     font-family: "Arial Black"
-    color: $light_gray
+    // color: $light_gray !important
     margin-top: 50px
+    
+    span
+      color: #AAA !important
 
   strong.name
     font-size: 16pt
@@ -48,7 +53,7 @@ $light_gray: rgb(180, 180, 180)
   .vcard-qr table
     float: right
 
-$qr_size: 3px
+$qr_size: 5px
 
 table
   border-width: 0
@@ -66,8 +71,23 @@ td
   width: $qr_size
   height: $qr_size
 
+.qr
+  // float: right
+  position: absolute
+  right: 0px
+
+.qr_row
+  // float: left
+  // width: 100%
+  clear: both
+
+.qr_bit
+  width: $qr_size
+  height: $qr_size
+  float: left
+
 .black
-  background-color: black
+  background-color: black !important
 
 .white
   background-color: white

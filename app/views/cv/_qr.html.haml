@@ -1,5 +1,5 @@
-%table
+.qr
   - qr.modules.each_index do |x|
-    %tr
+    .qr_row
       - qr.modules.each_index do |y|
-        %td{class: (qr.dark?(x,y) ? 'black' : 'white')}
+        .qr_bit{class: (qr.dark?(x,y) ? 'black' : 'white')}
