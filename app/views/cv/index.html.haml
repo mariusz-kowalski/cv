@@ -1,69 +1,85 @@
-%h1 CURRICULUM VITAE
+#paged_doc
+#feeder
+  %h1 CURRICULUM VITAE
 
-%h2
-  %span.glyphicon.glyphicon-user
-  %span PERSONAL DETAILS
+  %h2
+    %span.glyphicon.glyphicon-user
+    %span.content PERSONAL DETAILS
 
-.row
-  .col-sm-6
-    = small_pos 'name' do
-      %strong.name= @names
+  .row
+    .col-xs-6
+      = small_pos 'name' do
+        %strong.name= @names
 
-    - @phones && @phones.each do |phone|
-      = small_pos phone.name do 
-        %strong.name= phone.value
+      - @phones && @phones.each do |phone|
+        = small_pos phone.name do 
+          %strong.name= phone.value
 
-    - @emails && @emails.each do |email|
-      = small_pos email.name do 
-        = email.value
+      - @emails && @emails.each do |email|
+        = small_pos email.name do 
+          = email.value
 
-    - if @address
-      = small_pos 'address' do
-        = simple_format(@address.value, nil, wrapper_tag: 'div')
-  .col-sm-6.vcard-qr= render 'qr', qr: @qr
+      - if @address
+        = small_pos 'address' do
+          = simple_format(@address.value, nil, wrapper_tag: 'div')
+    .col-xs-6.vcard-qr= render 'qr', qr: @qr
 
-%h2
-  %span.glyphicon.glyphicon-briefcase
-  %span EMPLOYMENT HISTORY
-- @employments && @employments.each do |employment|
-  = pos range(employment.time_range) do
-    = render 'three_cols', col1: employment.value, col2: employment.name, col3: employment.description
-  .ul
-    - employment.list_items.each do |role|
-      = li role.name do
-        = role.value
+  %h2
+    %span.glyphicon.glyphicon-briefcase
+    %span.content EMPLOYMENT HISTORY
 
-%h2
-  %span.glyphicon.glyphicon-link 
-  %span LINKS
-.ul
-  - @links && @links.list_items.each do |link|
-    = li link.name do
-      %a{href: link.value}= link.description.empty? ? link.value : link.description
+  - @employments && @employments.each do |employment|
+    .group
+      = pos range(employment.time_range) do
+        = render 'employment', col1: employment.value, col2: employment.name, col3: employment.description
+      .ul
+        - employment.list_items.each do |role|
+          = li role.name do
+            = role.value
 
-%h2
-  %span.glyphicon.glyphicon-wrench
-  %span KEY SKILLS
-- @skills && @skills.each do |skill|
-  .row.pos
-    .col-sm-12.value
-      %strong= skill.name
-  .ul
-    - skill.list_items.each do |skill|
-      = li skill.name do
-        = skill.value
+  .group
+    %h2
+      %span.glyphicon.glyphicon-link 
+      %span.content LINKS
+    .group
+      - @links && @links.list_items.each do |link|
+        = li link.name do
+          %a{href: link.value}= link.description.empty? ? link.value : link.description
 
-%h2
-  %span.glyphicon.glyphicon-tower
-  %span EDUCATION
-- @educations && @educations.each do |education|
-  = pos range(education.time_range) do
-    = render 'three_cols', col1: education.value, col2: education.name, col3: education.description
+  %h2
+    %span.glyphicon.glyphicon-wrench
+    %span.content KEY SKILLS
+  - @skills && @skills.each do |skill|
+    .group
+      .row.pos
+        .col-sm-12.value
+          %strong= skill.name
+      .ul
+        - skill.list_items.each do |skill|
+          = li skill.name do
+            = skill.value
 
-%h2
-  %span.glyphicon.glyphicon-heart
-  %span HOBBIES & INTRESTS
-.ul
-  - @hobbies && @hobbies.list_items.each do |hobby|
-    = li hobby.value do
-      = hobby.description
+  %h2
+    %span.glyphicon.glyphicon-tower
+    %span.content EDUCATION
+  .education
+    - @educations && @educations.each do |education|
+      = pos range(education.time_range) do
+        = render 'education', col1: education.value, col2: education.name, col3: education.description
+
+  .group
+    %h2
+      %span.glyphicon.glyphicon-heart
+      %span.content HOBBIES & INTRESTS
+    .group
+      - @hobbies && @hobbies.list_items.each do |hobby|
+        = li hobby.value do
+          = hobby.description
+
+  .agreement
+    .row
+      .col-xs-2 polish version:
+      .col-xs-10 Wyrażam zgodę na przetwarzanie moich danych osobowych w celach rekrutacji, zgodnie z Ustawą z dn. 29 sierpnia 1997 r. o ochronie danych osobowych (Dz. U. z 2002 r. Nr 101, poz. 926 z późniejszymi zmianami).
+    .row
+      .col-xs-2 english version:
+      .col-xs-10 I hereby give consent for my personal data to be processed for the purposes of recruitment, in accordance with the Personal Data Protection Act dated 29.08.1997 (uniform text: Journal of Laws of the Republic of Poland 2002 No 101, item 926 with further amendments).

@@ -7,11 +7,11 @@ class CvController < ApplicationController
     @emails = BasicInformation.where(information_type: 'email')
     @address = BasicInformation.find_by(name: 'address')
 
-    @employments = TimeRangeListInformation.where(information_type: 'employment')
+    @employments = TimeRangeListInformation.where(information_type: 'employment').default_order
 
     @skills = ListInformation.where(information_type: 'skills')
 
-    @educations = TimeRangeInformation.where(information_type: 'education')
+    @educations = TimeRangeInformation.where(information_type: 'education').default_order
 
     @hobbies = ListInformation.find_by(information_type: 'hobbies')
 
@@ -34,7 +34,17 @@ class CvController < ApplicationController
         render(
           pdf: 'file_name',
           layout: 'application.pdf',
-          show_as_html: params[:debug].present?
+          show_as_html: params[:debug].present?,
+          template: 'cv/index.html.haml',
+          page_size: 'A4',
+          # zoom: 1.5,
+          # dpi: 150
+          margin: {
+            top: '10mm',
+            bottom: '10mm',
+            left: '10mm',
+            right: '10mm'
+          }
         )
       end
     end

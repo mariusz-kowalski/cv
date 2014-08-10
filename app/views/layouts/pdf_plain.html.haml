@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title CV
+    = wicked_pdf_stylesheet_link_tag 'application'
+    = wicked_pdf_javascript_include_tag 'application'
+    = csrf_meta_tags
+    %meta{charset: 'utf-8'}
+  %body
+    .container#main{role: :main}
+      = yield

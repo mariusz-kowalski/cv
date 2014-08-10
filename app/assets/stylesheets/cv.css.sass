@@ -2,15 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$gray: rgb(150, 150, 150)
+$gray: black
 
-$light_gray: rgb(180, 180, 180)
+$light_gray: black
 
-$qr_size: 4px
+$qr_size: 7px
 
-#main
+#paged_doc
+  color: black
   font-family: 'Arial'
-  text-align: justify
+  font-size: 20pt
+  
+  .description
+    text-align: justify
 
   h1
     text-align: center
@@ -22,24 +26,26 @@ $qr_size: 4px
     margin-top: 50px
     
     span
-      color: #AAA !important
+      color: $gray !important
 
   strong.name
-    font-size: 16pt
+    font-size: 22pt
 
   .pos
     margin-top: 30px
-    margin-bottom: 10px
+    // margin-bottom: 10px
+    border: double 6px black
+
+  .education .pos
+    border: none
 
   .pos .value
-    font-size: 14pt
+    font-size: 22pt
 
   .row.li
-    margin-left: 0px
-    margin-right: 0px
-    
-  .row.li
-    border-top: dotted 1px $light_gray
+    // margin-left: 0px
+    // margin-right: 0px
+    border-top: dashed 1px $light_gray
 
   .row.li:first-child
     border-top: none
@@ -47,13 +53,55 @@ $qr_size: 4px
   .row.li .col-sm-3 li
     // margin-left: 50px
 
-  .description
-    font-family: "Times New Roman"
+  // .description
+    // font-family: "Times New Roman"
 
   .vcard-qr table
     float: right
 
-$qr_size: 5px
+  .three-cols .col-xs-4:nth-child(even)
+    background-color: #eeeeee !important
+
+  .ul .row
+    border-left: solid 1px black
+    border-right: solid 1px black
+
+  .ul .row:last-child
+    border-bottom: solid 1px black
+
+  .page
+    // height: 2002px
+    height: 1952px
+    // border: solid blue 1px // debug
+
+  .page > .content
+    border: solid white 1px
+    // border: solid red 1px // debug
+
+  .footer
+    // border: solid green 1px
+    border-top: solid black 1px
+    height: 50px
+
+    .left
+      float: left
+      margin-left: 20px
+
+    .right
+      float: right
+      margin-right: 20px
+  
+  .label
+    color: inherit
+
+  .agreement
+    margin-top: 50px
+    padding: 0px 20px
+    border-top: solid black 1px
+    font-size: 14pt
+
+    .row:first-child
+      margin-bottom: 10px
 
 table
   border-width: 0

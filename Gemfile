@@ -60,3 +60,4 @@ gem 'rqrcode'
 gem 'vpim'
 
 gem 'wicked_pdf'
+
